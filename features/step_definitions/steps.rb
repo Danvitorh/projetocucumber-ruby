@@ -12,26 +12,13 @@ Dado('que estou na página principal da Starbugs') do
   visit 'https://starbugs.vercel.app/'
 end
 
-Dado('que desejo comprar o café {string}') do |product_name|
-  #impressão no console
-  #cria a variavel com @
-  #com o @ vira meio que uma variavél global e qualquer step pode acessar
-  @product_name = product_name
+Dado('que sejo comprar o seguinte produto:') do |table|
+#table hashes vai pegando os itens da tabela e recuperando por posição (linhas)
+@product_name = table.hashes[0][:product]
+@product_price = table.hashes[0][:price]
+@delivery_price = table.hashes[0][:delivery]
 end
 
-Dado('que esse produto custa {string}') do |product_price|
-  #impressão no console
-  #cria a variavel com @
-  #com o @ vira meio que uma variavél global e qualquer step pode acessar
-  @product_price = product_price
-end
-
-Dado('que o custo de entrega é de {string}') do |delivery_price|
-  #impressão no console
-  #cria a variavel com @
-  #com o @ vira meio que uma variavél global e qualquer step pode acessar
-  @delivery_price = delivery_price
-end
 Quando('inicio a compra desse item') do
   #busca elemento
   product = find('.coffee-item', text: @product_name)
