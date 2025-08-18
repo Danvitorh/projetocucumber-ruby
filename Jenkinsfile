@@ -10,7 +10,7 @@ pipeline {
 
         stage('Instalar dependências') {
             steps {
-                sh 'bundle install'
+                sh 'bundle install --path vendor/bundle'
             }
         }
 
