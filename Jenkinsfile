@@ -22,7 +22,6 @@ pipeline {
 
         stage('Instalar dependências') {
             steps {
-                // Usar configuração moderna do bundler (opcional, mas recomendado)
                 sh 'bundle config set path vendor/bundle'
                 sh 'bundle install'
             }
@@ -33,7 +32,6 @@ pipeline {
                 sh 'bundle exec cucumber'
             }
         }
-    }
 
         stage('Check Firefox & Geckodriver') {
             steps {
@@ -43,8 +41,7 @@ pipeline {
                 sh 'geckodriver --version'
             }
         }
-
-
+    }
 
     post {
         always {
