@@ -17,8 +17,10 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Instala Firefox recente
-RUN wget -qO- https://ftp.mozilla.org/pub/firefox/releases/117.0/linux-x86_64/en-US/firefox-117.0.tar.bz2 | tar xjf - -C /opt/ && \
-    ln -s /opt/firefox/firefox /usr/bin/firefox
+RUN wget -q https://ftp.mozilla.org/pub/firefox/releases/117.0/linux-x86_64/en-US/firefox-117.0.tar.bz2 -O /tmp/firefox.tar.bz2 && \
+    tar -xjf /tmp/firefox.tar.bz2 -C /opt/ && \
+    ln -s /opt/firefox/firefox /usr/bin/firefox && \
+    rm /tmp/firefox.tar.bz2
 
 # Instala geckodriver compatível
 RUN wget -q https://github.com/mozilla/geckodriver/releases/download/v0.34.0/geckodriver-v0.34.0-linux64.tar.gz && \
