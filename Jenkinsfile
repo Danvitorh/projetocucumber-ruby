@@ -35,6 +35,17 @@ pipeline {
         }
     }
 
+        stage('Check Firefox & Geckodriver') {
+            steps {
+                sh 'which firefox || echo "Firefox not found"'
+                sh 'firefox --version || echo "Firefox version not found"'
+                sh 'which geckodriver || echo "Geckodriver not found"'
+                sh 'geckodriver --version'
+            }
+        }
+
+
+
     post {
         always {
             echo 'Pipeline finalizada.'
