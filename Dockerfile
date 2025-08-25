@@ -29,7 +29,7 @@ RUN wget -q https://github.com/mozilla/geckodriver/releases/download/v0.34.0/gec
     rm geckodriver-v0.34.0-linux64.tar.gz
 
 # Bundler correto
-RUN gem install bundler -v 2.7.1
+RUN gem install bundler -v 2.6.9
 
 # Copia Gemfile e Gemfile.lock e instala gems
 COPY --chown=jenkins:jenkins Gemfile* /usr/src/app/
