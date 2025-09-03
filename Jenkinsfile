@@ -2,8 +2,7 @@ pipeline {
     agent any
 
     environment {
-        // Adicione aqui o caminho para onde o Homebrew instala o geckodriver
-        PATH = "/opt/homebrew/bin:$PATH"
+        PATH = "/usr/local/bin:$PATH"
     }
 
     stages {
@@ -29,7 +28,10 @@ pipeline {
 
         stage('Rodar testes') {
             steps {
-                sh 'bundle exec cucumber'
+                sh '''
+                export DISPLAY=:99
+                bundle exec cucumber
+                '''
             }
         }
 

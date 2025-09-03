@@ -1,15 +1,15 @@
 Quando('acesso a página principal da starbugs') do
-  visit 'https://starbugs.vercel.app/'
+  @home.open
 end
 
 Então('eu devo ver uma lista de cafés disponíveis') do
   #products virou variavel para guardar os dados
-  products = all('.coffee-item')
-  expect(products.size).to be > 0
+  expect(@home.coffee_list.size).to be > 0
 end
 
 Dado('que estou na página principal da Starbugs') do
-  visit 'https://starbugs.vercel.app/'
+  #chama o metodo criado na hooks
+  @home.open
 end
 
 Dado('que sejo comprar o seguinte produto:') do |table|
@@ -21,8 +21,7 @@ end
 
 Quando('inicio a compra desse item') do
   #busca elemento
-  product = find('.coffee-item', text: @product_name)
-  product.find('.buy-coffee').click
+  @home.buy(@product_name)
 end
 
 Então('devo ver a página de Checkout com o detalhes do produto') do
