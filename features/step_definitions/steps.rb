@@ -25,26 +25,13 @@ Quando('inicio a compra desse item') do
 end
 
 Então('devo ver a página de Checkout com o detalhes do produto') do
-  #tornar váriavel
-  product_title = find('.item-details h1')
-  #expect pega a váriavel e valida o texto, depois faz a comparação com a tag inicial
-  expect(product_title.text).to eql @product_name
-
-  sub_price = find('.subtotal .sub-price ')
-  expect(sub_price.text).to eql @product_price
-  delivery = find('.delivery .delivery-price')
-  expect(delivery.text).to eql @delivery_price
+  @checkout.assert_check_product_details(@product_name, @product_price, @delivery_price)
 end
 
 Então('o valor total da compra deve ser de {string}') do |total_price|
-  #deixou o elemento como váriavel
-  price = find('.total-price')
-  expect(price.text).to eql total_price
+  @checkout.assert_total_price(total_price)
 end
 
 Então('devo ver um popup informando que o produto está indisponível') do
-  popup = find('.swal2-html-container')
-  expect(popup.text).to eql 'Produto indisponível'
+  @popup.have_text('Produto indisponível')
 end
-
- 
